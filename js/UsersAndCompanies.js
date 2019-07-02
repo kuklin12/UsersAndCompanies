@@ -1,15 +1,17 @@
 let table = document.createElement('table');
 const tableDiv = document.querySelector('.tableBox');
+
 async function fetchData() {
     try {
-        const usersRequest = fetch(`http://localhost:3000/users`).then(response => {
-            return response.json()
-        });
-        const compRequest =fetch(`http://localhost:3000/companies`).then(response => {
-            return response.json()
-        });
-        const values = await Promise.all([usersRequest,compRequest]     );
 
+        const values = await Promise.all([fetch(`http://localhost:3000/users`)
+            .then(response => {
+                return response.json()
+            }),
+            fetch(`http://localhost:3000/companies`)
+                .then(response => {
+                    return response.json()
+                })]);
         const users = values[0];
         const comp = values[1];
 
