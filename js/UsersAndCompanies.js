@@ -26,17 +26,17 @@ async function fetchComp() {
 
 async function displayData() {
     const usersOfCompanies = await companies.map(usersInCompanies => {
-        let usersOfCompany = users.map(usersInCompany => {
+        usersInCompanies = users.map(usersInCompany => {
             if (usersInCompany.uris.company === usersInCompanies.uri) {
                 return usersInCompany.name;
             }
 
         });
-        usersOfCompany = usersOfCompany.filter( usersInCompanyTemporary => {
-            return usersInCompanyTemporary !== undefined;
+        usersInCompanies = usersInCompanies.filter( usersInCompaniesTemporary => {
+            return usersInCompaniesTemporary !== undefined;
         });
 
-        return usersOfCompany.toString();
+        return usersInCompanies.toString();
     });
     usersOfCompanies.forEach( function(currentValue , index) {
         let tr = document.createElement('tr');
