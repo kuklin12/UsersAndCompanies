@@ -1,7 +1,7 @@
 let table = document.createElement('table');
 const tableDiv = document.querySelector('.tableBox');
 let users;
-let comp;
+let companies;
 
 async function fetchUsers() {
 
@@ -16,8 +16,8 @@ async function fetchUsers() {
 
 async function fetchComp() {
     try {
-        const compResponse = await fetch(`http://localhost:3000/companies`);
-        return await compResponse.json();
+        const companiesResponse = await fetch(`http://localhost:3000/companies`);
+        return await companiesResponse.json();
 
     } catch (e) {
         console.error(e);
@@ -25,33 +25,31 @@ async function fetchComp() {
 }
 
 async function displayData() {
-    const usersOfComp = await comp.map(e => {
-        let userTemp = users.map(b => {
-            if (b.uris.company === e.uri) {
-                return b.name;
+    const usersOfCompanies = await companies.map(usersOfCompanies => {
+        let usersOfCompany = users.map(usersOfCompany => {
+            if (usersOfCompany.uris.company === usersOfCompanies.uri) {
+                return usersOfCompany.name;
             }
 
         });
-
-        userTemp = userTemp.filter(c => {
-            return c !== undefined;
+        usersOfCompany = usersOfCompany.filter(usersOfCompany => {
+            return usersOfCompany !== undefined;
         });
 
-        return userTemp.toString();
+        return usersOfCompany.toString();
     });
-
-    for (let i = 0; i < comp.length; i++) {
+    usersOfCompanies.forEach( function(currentValue , index) {
         let tr = document.createElement('tr');
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
-        let text1 = document.createTextNode("Company " + String(i));
+        let text1 = document.createTextNode("Company " + index);
         td1.appendChild(text1);
-        let text2 = document.createTextNode(usersOfComp[i]);
+        let text2 = document.createTextNode(String(currentValue));
         td2.appendChild(text2);
         tr.appendChild(td1);
         tr.appendChild(td2);
         table.appendChild(tr);
-    }
+    });
     tableDiv.appendChild(table);
 
 }
@@ -62,6 +60,6 @@ fetchUsers()
     })
     .then(fetchComp)
     .then(data => {
-        comp = data;
+        companies = data;
     })
     .then(displayData);
