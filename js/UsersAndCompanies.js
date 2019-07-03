@@ -32,13 +32,13 @@ async function displayData() {
             }
 
         });
-        company = company.filter( usersInCompaniesTemporary => {
+        company = company.filter(usersInCompaniesTemporary => {
             return usersInCompaniesTemporary !== undefined;
         });
 
-        return company.toString();
+        return company;
     });
-    usersOfCompanies.forEach( function(currentValue , index) {
+    usersOfCompanies.forEach((currentValue, index) => {
         let tr = document.createElement('tr');
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
