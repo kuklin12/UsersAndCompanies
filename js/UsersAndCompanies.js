@@ -25,15 +25,15 @@ async function fetchComp() {
 }
 
 async function displayData() {
-    const usersOfCompanies = await companies.map(usersOfCompanies => {
-        let usersOfCompany = users.map(usersOfCompany => {
-            if (usersOfCompany.uris.company === usersOfCompanies.uri) {
-                return usersOfCompany.name;
+    const usersOfCompanies = await companies.map(usersInCompanies => {
+        let usersOfCompany = users.map(usersInCompany => {
+            if (usersInCompany.uris.company === usersInCompanies.uri) {
+                return usersInCompany.name;
             }
 
         });
-        usersOfCompany = usersOfCompany.filter(usersOfCompany => {
-            return usersOfCompany !== undefined;
+        usersOfCompany = usersOfCompany.filter( usersInCompanyTemporary => {
+            return usersInCompanyTemporary !== undefined;
         });
 
         return usersOfCompany.toString();
