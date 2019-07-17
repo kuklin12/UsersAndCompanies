@@ -7,7 +7,7 @@ async function fetchUsers() {
 
     try {
         const usersResponse = await fetch(`http://localhost:3000/users`);
-        return await usersResponse.json();
+        return  usersResponse.json();
 
     } catch (e) {
         console.error(e);
@@ -17,7 +17,7 @@ async function fetchUsers() {
 async function fetchComp() {
     try {
         const companiesResponse = await fetch(`http://localhost:3000/companies`);
-        return await companiesResponse.json();
+        return  companiesResponse.json();
 
     } catch (e) {
         console.error(e);
